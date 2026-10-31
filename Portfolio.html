@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SXPTO! – Web Developer</title>
+<style>
+:root{color-scheme:dark;--bg:#07070a;--surface:#101015;--text:#f4f4f6;--muted:#9a9aa6;--line:#23232b;--red:#e5192b;--red-hot:#ff3347;--glow:rgba(229,25,43,.35);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+::selection{background:var(--red);color:#fff}
+#bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;width:0;background:linear-gradient(90deg,var(--red),var(--red-hot));z-index:50;box-shadow:0 0 12px var(--red)}
+.orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:.5;z-index:-1;pointer-events:none;background:radial-gradient(circle,var(--red),transparent 70%)}
+.o1{width:480px;height:480px;top:-120px;right:-140px;animation:float 14s ease-in-out infinite}
+.o2{width:380px;height:380px;bottom:-100px;left:-120px;animation:float 18s ease-in-out infinite reverse;opacity:.35}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,40px) scale(1.15)}}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;animation:down .8s ease both}
+@keyframes down{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+.logo{font-weight:800;letter-spacing:-.02em;font-size:1.2rem}.logo span{color:var(--red)}
+nav a{color:var(--muted);text-decoration:none;margin-left:20px;font-size:.95rem;position:relative;transition:color .3s}
+nav a::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--red);transition:width .35s}
+nav a:hover{color:var(--text)}nav a:hover::after{width:100%}
+.hero{padding:80px 0 60px}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;border:1px solid var(--line);background:var(--surface);padding:6px 14px;border-radius:999px;animation:up .8s .15s ease both}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 var(--glow)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+h1{font-size:clamp(2.4rem,7vw,4.2rem);line-height:1.05;letter-spacing:-.035em;margin:22px 0 18px;animation:up .9s .3s ease both}
+.shine{background:linear-gradient(100deg,var(--red) 20%,#ff8a95 45%,var(--red) 70%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+@keyframes shine{to{background-position:-220% 0}}
+.hero p{max-width:560px;color:var(--muted);font-size:1.1rem;animation:up .9s .45s ease both}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;animation:up .9s .6s ease both}
+@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.btn{position:relative;overflow:hidden;display:inline-block;padding:12px 22px;border-radius:12px;text-decoration:none;font:inherit;font-weight:700;border:1px solid var(--line);color:var(--text);background:var(--surface);cursor:pointer;transition:transform .3s,box-shadow .3s,border-color .3s,background .3s}
+.btn:hover{transform:translateY(-3px);border-color:var(--red)}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 8px 28px var(--glow)}
+.btn.primary:hover{background:var(--red-hot)}
+.btn::before{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-20deg);transition:left .6s}
+.btn:hover::before{left:140%}
+section{padding:54px 0}
+h2{font-size:1.8rem;letter-spacing:-.02em;margin:0 0 6px}
+h2::after{content:"";display:block;width:44px;height:3px;background:var(--red);margin-top:10px;border-radius:3px;transition:width .6s}
+.in h2::after{width:90px}
+.sub{color:var(--muted);margin:12px 0 28px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .4s}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),var(--glow),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover{transform:translateY(-8px);border-color:var(--red);box-shadow:0 18px 44px rgba(229,25,43,.18)}
+.card:hover::before{opacity:1}.card>*{position:relative}
+.num{font-size:.8rem;color:var(--red);font-weight:700;letter-spacing:.1em}
+.card h3{margin:6px 0;font-size:1.15rem}
+.card p{margin:0 0 14px;color:var(--muted);font-size:.95rem}
+.card a{color:var(--red-hot);text-decoration:none;font-weight:700;font-size:.95rem;display:inline-block;transition:transform .3s}
+.card a:hover{transform:translateX(6px)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{padding:8px 18px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.92rem;transition:all .3s}
+.chip:hover{background:var(--red);border-color:var(--red);transform:translateY(-3px) rotate(-2deg)}
+.contact{background:linear-gradient(145deg,#15070a,var(--surface));border:1px solid var(--red);border-radius:20px;padding:44px 24px;text-align:center;box-shadow:0 0 60px rgba(229,25,43,.15)}
+.contact p{color:var(--muted);max-width:480px;margin:10px auto 26px}.contact h2::after{margin:10px auto 0}
+.mail{display:block;margin-top:18px;color:var(--muted);font-size:.95rem}.mail b{color:var(--red-hot)}
+footer{padding:36px 0;color:var(--muted);font-size:.9rem;text-align:center}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.grid .rv:nth-child(2){transition-delay:.12s}.grid .rv:nth-child(3){transition-delay:.24s}
+/* demos */
+.dbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 22px;background:rgba(7,7,10,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.dbar a{color:var(--red-hot);text-decoration:none;font-weight:700}.dbar small{color:var(--muted)}
+.view{animation:up .6s ease both}
+.dh{padding:56px 0 20px}.dh h1{animation:none;font-size:clamp(2rem,6vw,3.2rem)}
+.row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}.row b{color:var(--red-hot)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:18px 0}
+.tile{aspect-ratio:1;border-radius:14px;display:grid;place-items:center;font-size:2.4rem;background:linear-gradient(135deg,#2a0a0f,#0d0d12);border:1px solid var(--line);transition:transform .4s}
+.tile:hover{transform:scale(1.07) rotate(-3deg);border-color:var(--red)}
+input,select{width:100%;padding:12px;margin:6px 0 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit}
+input[type=checkbox]{width:auto;margin:0 8px 0 0}input[type=range]{padding:0;accent-color:var(--red)}
+label{display:block;margin:8px 0}
+.big{font-size:2.8rem;font-weight:800;color:var(--red-hot);letter-spacing:-.03em}
+.ok{color:var(--red-hot);margin-top:12px;min-height:1.5em}
+.em{font-size:2.6rem}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div class="orb o1"></div><div class="orb o2"></div>
+
+<div class="view" id="v-home">
+<div class="wrap">
+  <nav><span class="logo">SXPTO<span>!</span></span><div><a href="#work">Work</a><a href="#services">Services</a><a href="#contact">Contact</a></div></nav>
+  <header class="hero">
+    <span class="tag"><i class="dot"></i>Available for projects</span>
+    <h1>I build <span class="shine">fast, bold websites</span> for small businesses.</h1>
+    <p>I’m SXPTO!, a web developer who turns Instagram pages into real websites that load quickly on any phone, with ordering and chat built in.</p>
+    <div class="btns"><a class="btn primary" href="#contact">Get a website</a><a class="btn" href="#work">See my work</a></div>
+  </header>
+  <section id="work" class="rv">
+    <h2>Selected work</h2>
+    <p class="sub">Click a project to open it live and try it yourself.</p>
+    <div class="grid">
+      <div class="card rv"><span class="num">01</span><h3>Barbershop website</h3><p>One-page site with a gallery, price list, hours and a booking form.</p><a href="#barbershop">Open live demo →</a></div>
+      <div class="card rv"><span class="num">02</span><h3>Price estimator tool</h3><p>Interactive calculator built with plain JavaScript, no frameworks.</p><a href="#estimator">Open live demo →</a></div>
+      <div class="card rv"><span class="num">03</span><h3>Mini store</h3><p>Product list with a cart that remembers your items between visits.</p><a href="#mini-store">Open live demo →</a></div>
+    </div>
+  </section>
+  <section id="services" class="rv">
+    <h2>What I can do for you</h2>
+    <p class="sub">Simple packages, clear prices, quick delivery.</p>
+    <div class="grid">
+      <div class="card rv"><span class="num">01</span><h3>One-page website</h3><p>Perfect for shops, salons and restaurants. Mobile-first, with your branding.</p></div>
+      <div class="card rv"><span class="num">02</span><h3>Interactive web tools</h3><p>Calculators, booking forms and order pages that save you time.</p></div>
+      <div class="card rv"><span class="num">03</span><h3>Fixes and upgrades</h3><p>Slow, broken or outdated site? I’ll tidy it up and make it faster.</p></div>
+    </div>
+  </section>
+  <section class="rv">
+    <h2>Tools I use</h2><p class="sub">Always learning more.</p>
+    <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Responsive design</span><span class="chip">GitHub</span><span class="chip">Netlify</span></div>
+  </section>
+  <section id="contact" class="rv">
+    <div class="contact">
+      <h2>Let’s build something</h2>
+      <p>Tell me about your business and what you need. I’ll reply with a plan and a price.</p>
+      <a class="btn primary" href="mailto:kingaetheryt@gmail.com">Email me</a>
+      <span class="mail">or write to <b>kingaetheryt@gmail.com</b></span>
+    </div>
+  </section>
+  <footer>© <span id="y"></span> SXPTO! Built by hand with HTML, CSS and JavaScript.</footer>
+</div>
+</div>
+
+<div class="view" id="v-barbershop" hidden>
+  <div class="dbar"><a href="#work">← Back to portfolio</a><small>Demo project 01</small></div>
+  <div class="wrap">
+    <header class="dh"><span class="tag"><i class="dot"></i>Open today · 9am – 8pm</span><h1>Sharp <span class="shine">Cuts</span> Barbershop</h1><p style="color:var(--muted)">Fresh fades, clean lines, no long waits. Walk in or book a slot.</p></header>
+    <div class="tiles"><div class="tile">✂️</div><div class="tile">💈</div><div class="tile">🪒</div><div class="tile">😎</div></div>
+    <h2>Prices</h2><p class="sub"></p>
+    <div class="row"><span>Classic cut</span><b>$10</b></div><div class="row"><span>Fade + line-up</span><b>$14</b></div><div class="row"><span>Beard trim</span><b>$6</b></div><div class="row"><span>Cut + beard combo</span><b>$18</b></div>
+    <section><h2>Book a slot</h2><p class="sub"></p>
+      <div class="card"><label>Your name<input id="bn" placeholder="e.g. Tunde"></label>
+      <label>Service<select id="bs"><option>Classic cut</option><option>Fade + line-up</option><option>Beard trim</option><option>Cut + beard combo</option></select></label>
+      <label>Time<select id="bt"><option>10:00 am</option><option>12:00 pm</option><option>2:00 pm</option><option>4:00 pm</option><option>6:00 pm</option></select></label>
+      <button class="btn primary" id="bb">Book now</button><div class="ok" id="bo"></div></div></section>
+  </div>
+</div>
+
+<div class="view" id="v-estimator" hidden>
+  <div class="dbar"><a href="#work">← Back to portfolio</a><small>Demo project 02</small></div>
+  <div class="wrap">
+    <header class="dh"><h1>Website <span class="shine">price estimator</span></h1><p style="color:var(--muted)">Slide and tick to see a live estimate. Built with plain JavaScript.</p></header>
+    <div class="card"><label>Number of pages: <b id="pn">3</b><input type="range" id="pg" min="1" max="10" value="3"></label>
+      <label><input type="checkbox" class="ex" value="40">Contact form (+$40)</label>
+      <label><input type="checkbox" class="ex" value="60">Photo gallery (+$60)</label>
+      <label><input type="checkbox" class="ex" value="150">Online ordering (+$150)</label>
+      <label><input type="checkbox" id="rush">Rush delivery (×1.25)</label>
+      <p style="margin:18px 0 0;color:var(--muted)">Estimated price</p><div class="big" id="tot">$230</div></div>
+  </div>
+</div>
+
+<div class="view" id="v-mini-store" hidden>
+  <div class="dbar"><a href="#work">← Back to portfolio</a><small>Demo project 03 · Cart: <b id="cn">0</b></small></div>
+  <div class="wrap">
+    <header class="dh"><h1>Red &amp; Black <span class="shine">Store</span></h1><p style="color:var(--muted)">Add items to your cart. Refresh the page and they’re still there.</p></header>
+    <div class="grid" id="sg"></div>
+    <section><div class="card"><h3>Your cart</h3><div id="cl" style="color:var(--muted);margin:10px 0"></div><div>Total: <b class="big" id="ct" style="font-size:1.8rem">$0</b></div><br><button class="btn" id="cc">Clear cart</button></div></section>
+  </div>
+</div>
+
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+var bar=document.getElementById("bar");
+addEventListener("scroll",function(){var h=document.documentElement;bar.style.width=(h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight)*100)+"%"},{passive:true});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll(".rv").forEach(function(el){io.observe(el)});
+document.querySelectorAll(".card").forEach(function(c){c.addEventListener("pointermove",function(e){var r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px")})});
+var views=document.querySelectorAll(".view");
+function route(){var h=location.hash.slice(1),t=document.getElementById("v-"+h);
+views.forEach(function(v){v.hidden=true});
+if(t){t.hidden=false;scrollTo(0,0)}else{document.getElementById("v-home").hidden=false;var a=h&&document.getElementById(h);if(a)a.scrollIntoView();else scrollTo(0,0)}}
+addEventListener("hashchange",route);route();
+/* barbershop */
+document.getElementById("bb").onclick=function(){var n=document.getElementById("bn").value.trim()||"friend";document.getElementById("bo").textContent="Thanks "+n+"! You’re booked for "+document.getElementById("bs").value+" at "+document.getElementById("bt").value+". (Demo only)"};
+/* estimator */
+function est(){var p=+document.getElementById("pg").value,t=80+p*50;document.querySelectorAll(".ex:checked").forEach(function(c){t+=+c.value});if(document.getElementById("rush").checked)t*=1.25;document.getElementById("pn").textContent=p;document.getElementById("tot").textContent="$"+Math.round(t)}
+document.getElementById("pg").oninput=est;document.getElementById("rush").onchange=est;document.querySelectorAll(".ex").forEach(function(c){c.onchange=est});est();
+/* store */
+var P=[["Red hoodie",35,"🧥"],["Black cap",15,"🧢"],["Sticker pack",5,"✨"],["Coffee mug",12,"☕"]],C={};
+try{C=JSON.parse(localStorage.getItem("cart")||"{}")}catch(e){}
+function save(){try{localStorage.setItem("cart",JSON.stringify(C))}catch(e){}}
+function cart(){var n=0,t=0,h="";for(var i in C){if(!P[i])continue;n+=C[i];t+=C[i]*P[i][1];h+="<div>"+P[i][2]+" "+P[i][0]+" ×"+C[i]+"</div>"}document.getElementById("cn").textContent=n;document.getElementById("ct").textContent="$"+t;document.getElementById("cl").innerHTML=h||"Your cart is empty."}
+var sg=document.getElementById("sg");
+sg.innerHTML=P.map(function(p,i){return '<div class="card"><div class="em">'+p[2]+'</div><h3>'+p[0]+'</h3><p>$'+p[1]+'</p><button class="btn primary" data-i="'+i+'">Add to cart</button></div>'}).join("");
+sg.onclick=function(e){var i=e.target.dataset.i;if(i!=null){C[i]=(C[i]||0)+1;save();cart()}};
+document.getElementById("cc").onclick=function(){C={};save();cart()};cart();
+</script>
+</body>
+</html>
